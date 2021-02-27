@@ -1,6 +1,8 @@
 package com.kentsinclair.androiddevchallenge.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,10 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
+import com.kentsinclair.androiddevchallenge.R
 import com.kentsinclair.androiddevchallenge.models.PuppyInfo
 import com.kentsinclair.androiddevchallenge.models.PuppyName
 import com.kentsinclair.androiddevchallenge.models.Tagline
@@ -33,6 +37,7 @@ fun PreviewPuppy() {
 
 @Composable
 fun PuppyCard(puppy: PuppyInfo, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     Card(
         modifier = modifier,
         border = BorderStroke(color = Color.Gray, width = Dp.Hairline),
@@ -43,7 +48,11 @@ fun PuppyCard(puppy: PuppyInfo, modifier: Modifier = Modifier) {
                 .clip(RoundedCornerShape(4.dp))
                 .background(MaterialTheme.colors.surface)
                 .padding(8.dp)
-                .clickable { /* Ignoring clicks for now */ }) {
+                .clickable {
+                    Toast
+                        .makeText(context, "${puppy.puppyName} Clicked!", Toast.LENGTH_SHORT)
+                        .show()
+                }) {
             Surface(
                 modifier = Modifier
                     .size(50.dp)
@@ -51,7 +60,9 @@ fun PuppyCard(puppy: PuppyInfo, modifier: Modifier = Modifier) {
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.15f)
             ) {
-                //TODO figure out image loading -  Image goes here
+//                // image goes here.
+
+
             }
             Column(
                 modifier = Modifier
@@ -59,9 +70,9 @@ fun PuppyCard(puppy: PuppyInfo, modifier: Modifier = Modifier) {
                     .align(Alignment.CenterVertically)
             ) {
 
-                Text(puppy.name.name, fontWeight = FontWeight.Bold)
+                Text(puppy.puppyName, fontWeight = FontWeight.Bold)
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                    Text(puppy.shortDesc.shortDesc, style = MaterialTheme.typography.body2)
+                    Text(puppy.puppyShortDescription, style = MaterialTheme.typography.body2)
                 }
             }
         }
