@@ -52,9 +52,7 @@ fun PuppyCard(
     modifier: Modifier = Modifier,
     onPuppyClicked: (index: Int) -> Unit
 ) {
-
     val puppy = remember { DogRepo.dogs[puppyIndex] }
-    // index not puppy
     val context = LocalContext.current
     Card(
         modifier = modifier,
