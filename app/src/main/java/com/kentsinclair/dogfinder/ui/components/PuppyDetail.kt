@@ -15,12 +15,24 @@
  */
 package com.kentsinclair.dogfinder.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.kentsinclair.dogfinder.data.DogRepo
-import com.kentsinclair.dogfinder.ui.theme.MyTheme
+import com.kentsinclair.dogfinder.models.PuppyInfo
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun PuppyDetail(puppyIndex: Int) {
@@ -28,16 +40,37 @@ fun PuppyDetail(puppyIndex: Int) {
     Scaffold(
         content = {
             Column {
-                Header(resourceId = puppy.imageResourceId)
+                Details(resourceId = puppy.imageResourceId, puppy)
             }
         }
     )
 }
 
-@Preview
 @Composable
-fun PuppyDetailPreview() {
-    MyTheme {
-        PuppyDetail(0)
+fun Details(resourceId: Int, puppy: PuppyInfo) {
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(puppy.puppyName, style = MaterialTheme.typography.h3, color = Color.White)
+            Text(
+                puppy.puppyShortDescription,
+                style = MaterialTheme.typography.h6,
+                color = Color.White
+            )
+            CoilImage(
+                data = resourceId,
+                contentDescription = "BOOOO",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            )
+        }
     }
 }

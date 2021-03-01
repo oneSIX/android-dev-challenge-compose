@@ -68,7 +68,6 @@ fun PuppyCard(
                 .padding(8.dp)
                 .clickable {
                     onPuppyClicked(puppyIndex)
-
                     Toast
                         .makeText(context, "${puppy.puppyName} Clicked!", Toast.LENGTH_SHORT)
                         .show()
@@ -93,9 +92,9 @@ fun PuppyCard(
                     .align(Alignment.CenterVertically)
             ) {
 
-                Text(puppy.puppyName, fontWeight = FontWeight.Bold)
+                Text(puppy.puppyName, fontWeight = FontWeight.Bold, color = Color.White)
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                    Text(puppy.puppyShortDescription, style = MaterialTheme.typography.body2)
+                    Text(puppy.puppyShortDescription, style = MaterialTheme.typography.body2, color = Color.White)
                 }
             }
         }

@@ -30,6 +30,6 @@ object DogRepo {
             Tagline("this one is a small smartypants"),
             R.drawable.reggie_smiling
         ),
-        PuppyInfo(3, PuppyName("Reggie3"), Tagline("got any snacks?"), R.drawable.reggie_smiling)
+        PuppyInfo(3, PuppyName("Geno2"), Tagline("got any snacks?"), R.drawable.geno_goodboy)
     )
 }
