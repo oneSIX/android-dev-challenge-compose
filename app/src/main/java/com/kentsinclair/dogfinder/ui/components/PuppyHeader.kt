@@ -15,29 +15,27 @@
  */
 package com.kentsinclair.dogfinder.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.kentsinclair.dogfinder.data.DogRepo
-import com.kentsinclair.dogfinder.ui.theme.MyTheme
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun PuppyDetail(puppyIndex: Int) {
-    val puppy = DogRepo.dogs[puppyIndex]
-    Scaffold(
-        content = {
-            Column {
-                Header(resourceId = puppy.imageResourceId)
-            }
+fun Header(resourceId: Int) {
+    Card {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            CoilImage(
+                modifier = Modifier.fillMaxSize(1f),
+                data = resourceId,
+                contentDescription = "BOOOO"
+            )
         }
-    )
-}
-
-@Preview
-@Composable
-fun PuppyDetailPreview() {
-    MyTheme {
-        PuppyDetail(0)
     }
 }

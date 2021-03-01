@@ -21,6 +21,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -33,6 +34,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,15 +43,18 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.kentsinclair.dogfinder.models.PuppyInfo
+import com.kentsinclair.dogfinder.data.DogRepo
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun PuppyCard(
-    puppy: PuppyInfo,
+    puppyIndex: Int,
     modifier: Modifier = Modifier,
     onPuppyClicked: (index: Int) -> Unit
 ) {
 
+    val puppy = remember { DogRepo.dogs[puppyIndex] }
+    // index not puppy
     val context = LocalContext.current
     Card(
         modifier = modifier,
@@ -62,7 +67,7 @@ fun PuppyCard(
                 .background(MaterialTheme.colors.surface)
                 .padding(8.dp)
                 .clickable {
-                    // TODO nav to puppy detail here!
+                    onPuppyClicked(puppyIndex)
 
                     Toast
                         .makeText(context, "${puppy.puppyName} Clicked!", Toast.LENGTH_SHORT)
@@ -76,7 +81,11 @@ fun PuppyCard(
                 shape = CircleShape,
                 color = MaterialTheme.colors.onSurface.copy(alpha = 0.15f)
             ) {
-//                // image goes here.
+                CoilImage(
+                    modifier = Modifier.fillMaxSize(1f),
+                    data = puppy.imageResourceId,
+                    contentDescription = puppy.puppyShortDescription
+                )
             }
             Column(
                 modifier = Modifier

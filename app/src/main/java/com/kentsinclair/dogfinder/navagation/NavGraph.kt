@@ -21,7 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.kentsinclair.dogfinder.data.DogRepo
+import com.kentsinclair.dogfinder.ui.components.PuppyDetail
 import com.kentsinclair.dogfinder.ui.components.PuppyList
 
 @Composable
@@ -30,14 +30,14 @@ fun NavGraph() {
 
     NavHost(navController = navController, startDestination = "puppylist") {
         composable("puppylist") {
-            PuppyList(puppies = DogRepo.dogs)
+            PuppyList(navController)
         }
 
         composable(
-            route = "puppyDetails/{puppyIndex}",
+            route = "puppyDetail/{puppyIndex}",
             arguments = listOf(navArgument("puppyIndex") { type = NavType.IntType })
         ) { entry ->
-//            PuppyDetail(puppyIndex = entry.arguments!!.getInt("puppyIndex"))
+            PuppyDetail(puppyIndex = entry.arguments!!.getInt("puppyIndex"))
         }
     }
 }

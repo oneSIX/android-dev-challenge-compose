@@ -15,17 +15,21 @@
  */
 package com.kentsinclair.dogfinder.data
 
+import com.kentsinclair.dogfinder.R
 import com.kentsinclair.dogfinder.models.PuppyInfo
 import com.kentsinclair.dogfinder.models.PuppyName
 import com.kentsinclair.dogfinder.models.Tagline
 
 object DogRepo {
     val dogs = listOf(
-
-        PuppyInfo(0, PuppyName("Reggie"), Tagline("he's got two faces")),
-        PuppyInfo(1, PuppyName("Stitch"), Tagline("his name is actually just Jon")),
-        PuppyInfo(2, PuppyName("Coco"), Tagline("this one is a small smartypants")),
-        PuppyInfo(3, PuppyName("Kiki"), Tagline("got any snacks?"))
-
+        PuppyInfo(0, PuppyName("Reggie"), Tagline("he's got two faces"), R.drawable.reggie_smiling),
+        PuppyInfo(1, PuppyName("Geno"), Tagline("RIP good boy"), R.drawable.geno_goodboy),
+        PuppyInfo(
+            2,
+            PuppyName("Reggie2"),
+            Tagline("this one is a small smartypants"),
+            R.drawable.reggie_smiling
+        ),
+        PuppyInfo(3, PuppyName("Reggie3"), Tagline("got any snacks?"), R.drawable.reggie_smiling)
     )
 }

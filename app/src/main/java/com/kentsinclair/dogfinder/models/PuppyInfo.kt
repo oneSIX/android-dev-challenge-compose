@@ -15,7 +15,7 @@
  */
 package com.kentsinclair.dogfinder.models
 
-data class PuppyInfo(val index: Int, private val name: PuppyName, private val shortDesc: Tagline) {
+data class PuppyInfo(val index: Int, private val name: PuppyName, private val shortDesc: Tagline, val imageResourceId: Int) {
     val puppyName get() = name.name
     val puppyShortDescription get() = shortDesc.shortDesc
 }
